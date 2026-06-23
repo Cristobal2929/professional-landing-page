@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing Profesional – Soluciones Web a Medida</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Landing page estática para vender plantillas web profesionales. Incluye hero, servicios, portafolio y formulario de contacto.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Landing Profesional – Soluciones Web a Medida">
+  <meta property="og:description" content="Descubre nuestros servicios, portafolio y solicita una propuesta personalizada.">
+  <meta property="og:image" content="https://example.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics (código configurable) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXX-Y');
+  </script>
+
+  <style>
+    :root {
+      --color-primary: #1A3E5F;   /* azul marino */
+      --color-bg: #FFFFFF;        /* blanco */
+      --color-accent: #F2F2F2;    /* gris claro */
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+    }
+
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      background: var(--color-bg);
+      color: #333;
+    }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+    /* Layout */
+    header {
+      position: fixed;
+      top:0; left:0; right:0;
+      background: var(--color-bg);
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0.8rem 1rem;
+    }
+    .nav-links a { margin-left:1.5rem; font-weight:600; }
+    .logo { font-family: var(--font-display); font-size:1.4rem; color: var(--color-primary); }
+
+    main { padding-top:80px; } /* offset for fixed header */
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1521791057225-0d4c8c2d4c5c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #fff;
+      text-align:center;
+      padding:6rem 1rem;
+      position:relative;
+    }
+    .hero::before {
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(26,62,95,.7);
+    }
+    .hero-content {
+      position:relative;
+      max-width:800px;
+      margin:auto;
+    }
+    .hero h1 { font-family: var(--font-display); font-size:2.5rem; margin-bottom:.5rem; }
+    .hero p { font-size:1.2rem; margin-bottom:1.5rem; }
+    .btn-primary {
+      background: var(--color-primary);
+      color:#fff;
+      border:none;
+      padding:.8rem 1.5rem;
+      font-size:1rem;
+      border-radius:4px;
+      cursor:pointer;
+      transition:background .3s;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible { background:#16344c; }
+
+    /* Services */
+    .services { padding:4rem 1rem; background: var(--color-accent); }
+    .services h2 { text-align:center; margin-bottom:2rem; font-family: var(--font-display); }
+    .service-grid {
+      display:grid;
+      gap:1.5rem;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .service-card {
+      background:#fff;
+      border-radius:8px;
+      padding:2rem 1.5rem;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
+    }
+    .service-card:hover,
+    .service-card:focus-visible { transform:translateY(-4px); }
+    .service-card svg { width:48px; height:48px; margin-bottom:.8rem; fill:var(--color-primary); }
+
+    /* Portfolio */
+    .portfolio { padding:4rem 1rem; }
+    .portfolio h2 { text-align:center; margin-bottom:2rem; font-family: var(--font-display); }
+    .filter-bar { text-align:center; margin-bottom:1.5rem; }
+    .filter-bar button {
+      background:none;
+      border:1px solid var(--color-primary);
+      color:var(--color-primary);
+      padding:.4rem .8rem;
+      margin:0 .3rem;
+      border-radius:4px;
+      cursor:pointer;
+      transition:background .2s, color .2s;
+    }
+    .filter-bar button.active,
+    .filter-bar button:hover,
+    .filter-bar button:focus-visible {
+      background:var(--color-primary);
+      color:#fff;
+    }
+    .portfolio-grid {
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .portfolio-item {
+      position:relative;
+      overflow:hidden;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .portfolio-item img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .3s;
+    }
+    .portfolio-item:hover img,
+    .portfolio-item:focus-visible img { transform:scale(1.05); }
+    .lightbox {
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.8);
+      align-items:center; justify-content:center;
+      z-index:2000;
+    }
+    .lightbox img { max-width:90vw; max-height:90vh; border-radius:8px; }
+    .lightbox:target { display:flex; }
+
+    /* Modal Contact */
+    .modal {
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.5);
+      align-items:center; justify-content:center;
+      z-index:2000;
+    }
+    .modal:target { display:flex; }
+    .modal-content {
+      background:#fff;
+      padding:2rem;
+      border-radius:8px;
+      width:90%;
+      max-width:500px;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);
+    }
+    .modal-content h3 { margin-bottom:1rem; font-family: var(--font-display); }
+    .modal-content label { display:block; margin-top:.8rem; font-weight:600; }
+    .modal-content input,
+    .modal-content textarea {
+      width:100%; padding:.6rem; margin-top:.3rem;
+      border:1px solid #ccc; border-radius:4px;
+    }
+    .modal-content button {
+      margin-top:1rem;
+      background:var(--color-primary);
+      color:#fff;
+      border:none;
+      padding:.8rem 1.2rem;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    /* Footer */
+    footer {
+      background:var(--color-primary);
+      color:#fff;
+      padding:2rem 1rem;
+      text-align:center;
+    }
+    footer a { color:#fff; margin:0 .5rem; }
+    .social-icons svg { width:24px; height:24px; fill:#fff; margin:0 .4rem; }
+
+    /* Responsive */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div class="logo">WebPro</div>
+    <nav class="nav-links">
+      <a href="#services">Servicios</a>
+      <a href="#portfolio">Portafolio</a>
+      <a href="#contact-modal">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Soluciones Web a Medida</h1>
+      <p>Diseñamos y desarrollamos sitios profesionales que convierten visitantes en clientes.</p>
+      <button class="btn-primary" onclick="openModal()">Solicitar propuesta</button>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <h2>Nuestros Servicios</h2>
+    <div class="service-grid">
+      <div class="service-card" tabindex="0">
+        <svg viewBox="0 0 64 64"><path d="M32 4l12 24h-24z"/></svg>
+        <h3>Diseño UI/UX</h3>
+        <p>Interfaces atractivas y usables, pensadas para tu público objetivo.</p>
+      </div>
+      <div class="service-card" tabindex="0">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" stroke="none"/></svg>
+        <h3>Desarrollo Frontend</h3>
+        <p>Código limpio, rápido y accesible con las últimas tecnologías.</p>
+      </div>
+      <div class="service-card" tabindex="0">
+        <svg viewBox="0 0 64 64"><rect x="8" y="8" width="48" height="48" rx="8"/></svg>
+        <h3>Backend & API</h3>
+        <p>Servicios robustos y seguros que escalan con tu negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="portfolio">
+    <h2>Portafolio</h2>
+    <div class="filter-bar">
+      <button class="active" data-filter="all">Todo</button>
+      <button data-filter="ecommerce">E‑commerce</button>
+      <button data-filter="corporate">Corporativo</button>
+      <button data-filter="blog">Blog</button>
+    </div>
+    <div class="portfolio-grid">
+      <a href="#lightbox-1" class="portfolio-item" data-category="ecommerce" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Proyecto E‑commerce">
+      </a>
+      <a href="#lightbox-2" class="portfolio-item" data-category="corporate" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=80" alt="Sitio Corporativo">
+      </a>
+      <a href="#lightbox-3" class="portfolio-item" data-category="blog" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1507525428035-5e7e5c5b5d6c?auto=format&fit=crop&w=400&q=80" alt="Blog de Viajes">
+      </a>
+      <!-- Más ítems pueden añadirse -->
+    </div>
+  </section>
+
+  <!-- Lightbox placeholders -->
+  <div id="lightbox-1" class="lightbox" aria-modal="true" role="dialog">
+    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="Proyecto E‑commerce">
+  </div>
+  <div id="lightbox-2" class="lightbox" aria-modal="true" role="dialog">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Sitio Corporativo">
+  </div>
+  <div id="lightbox-3" class="lightbox" aria-modal="true" role="dialog">
+    <img src="https://images.unsplash.com/photo-1507525428035-5e7e5c5b5d6c?auto=format&fit=crop&w=1200&q=80" alt="Blog de Viajes">
+  </div>
+
+  <!-- Modal Contact -->
+  <div id="contact-modal" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <h3>Solicita tu propuesta</h3>
+      <form id="contactForm">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+      <p id="formStatus" style="margin-top:1rem;"></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 WebPro. Todos los derechos reservados.</p>
+  <p>
+    <a href="/privacy">Política de privacidad</a> |
+    <a href="/terms">Términos y condiciones</a>
+  </p>
+  <div class="social-icons">
+    <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.28 4.28 0 00-7.3 3.9A12.13 12.13 0 013 4.79a4.28 4.28 0 001.33 5.71 4.24 4.24 0 01-1.94-.54v.05a4.28 4.28 0 003.44 4.2 4.3 4.3 0 01-1.93.07 4.28 4.28 0 003.99 2.97A8.6 8.6 0 012 19.54a12.14 12.14 0 006.58 1.93c7.89 0 12.21-6.54 12.21-12.21 0-.19-.01-.39-.02-.58A8.73 8.73 0 0024 5.5a8.5 8.5 0 01-2.54.7z"/></svg></a>
+    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13.5 10.3h-3v-4.5c0-1.1-.9-2-2-2s-2 .9-2 2v4.5h-3v-9h3v1.3c.6-.9 1.7-1.3 2.8-1.3 2.2 0 4 1.8 4 4v5z"/></svg></a>
+  </div>
+  <p><a href="https://buy.stripe.com/example" class="btn-primary">Comprar ahora</a></p>
+</footer>
+
+<script>
+  // Modal handling
+  function openModal() {
+    location.hash = '#contact-modal';
+  }
+
+  // Portfolio filter
+  const filterButtons = document.querySelectorAll('.filter-bar button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      portfolioItems.forEach(item => {
+        const cat = item.dataset.category;
+        if (filter === 'all' || cat === filter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // AJAX contact form (requiere backend Flask en /contact)
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    status.textContent = 'Enviando...';
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+    try {
+      const resp = await fetch('/contact', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+      const result = await resp.json();
+      if (resp.ok) {
+        status.textContent = '¡Gracias! Te hemos enviado la propuesta por correo.';
+        form.reset();
+        // opcional: cerrar modal después de 2s
+        setTimeout(() => { location.hash = ''; }, 2000);
+      } else {
+        status.textContent = result.error || 'Error al enviar el formulario.';
+      }
+    } catch (err) {
+      status.textContent = 'Fallo de red. Inténtalo más tarde.';
+    }
+  });
+</script>
+</body>
+</html>
